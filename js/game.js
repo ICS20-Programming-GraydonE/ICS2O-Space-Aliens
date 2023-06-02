@@ -8,10 +8,12 @@
 // This is the Phaser3 configuration file
 
 //Import files
-import SplashScene from './splashScene.js' 
+import SplashScene from './splashScene.js'
+import TitleScene from './titleScene.js'
 
-// adding game scenes cobsr
+// adding game scenes const
 const splashScene = new SplashScene() 
+const titleScene = new TitleScene()
 
 // Game Scene
 const config = {
@@ -25,7 +27,7 @@ const config = {
     }
   },
 // Set Background Colour
-  backgroundColor: 0x5f6e7a,
+  backgroundColor: 0xffffff,
     scale: {
     mode: Phaser.Scale.FIT,
     // place it in middle of the page.
@@ -36,5 +38,5 @@ const config = {
 
 const game = new Phaser.Game(config) 
 
-// Adding game scenes
+// start title
 game.scene.add('splashScene', splashScene)
