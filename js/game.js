@@ -7,10 +7,16 @@
 // Created on: June 2023
 // This is the Phaser3 configuration file
 
+//Import files
+import SplashScene from './splashScene.js' 
+
+// adding game scenes cobsr
+const splashScene = new SplashScene() 
+
 // Game Scene
 const config = {
-  type: Phaser. AUTO, 
-  width: 1029,
+  type:  Phaser.AUTO, 
+  width: 1920,
   height: 1080, 
   physics: {
     default: 'arcade',
@@ -29,4 +35,6 @@ const config = {
 
 
 const game = new Phaser.Game(config) 
-cosole.log(game)
+
+// Adding game scenes
+game.scene.add('splashScene', splashScene)
