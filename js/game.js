@@ -3,43 +3,43 @@
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Mr. Coxall
+// Created on: Sep 2020
 // Modified by: Graydon Ezzeddin
-// Created on: June 2023
 // This is the Phaser3 configuration file
 
-//Import files
 import SplashScene from './splashScene.js'
 import TitleScene from './titleScene.js'
 
-// adding game scenes const
-const splashScene = new SplashScene() 
+// game scenes
+const splashScene = new SplashScene()
 const titleScene = new TitleScene()
 
-// Game Scene
+// Game scene 
 const config = {
-  type:  Phaser.AUTO, 
+  type: Phaser.AUTO,
   width: 1920,
-  height: 1080, 
+  height: 1080,
   physics: {
     default: 'arcade',
     arcade: {
       debug: false
     }
   },
-// Set Background Colour
+  // set background color
   backgroundColor: 0xffffff,
-    scale: {
+  scale: {
     mode: Phaser.Scale.FIT,
-    // place it in middle of the page.
+    //  place it in the middle of the screen.
     autoCenter: Phaser.Scale.CENTER_BOTH
   }
 }
 
+const game = new Phaser.Game(config)
 
-const game = new Phaser.Game(config) 
-
-// Add scenes
+// load scenes
+// NOTE: remember any "key" is global and CAN NOT be reused!
 game.scene.add('splashScene', splashScene)
+game.scene.add('titleScene', titleScene)
 
 // start title
 game.scene.start('splashScene')

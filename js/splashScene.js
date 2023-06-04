@@ -3,29 +3,26 @@
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Mr. Coxall
+// Created on: Sep 2020
 // Modified by: Graydon Ezzeddin
-// Created on: June 2023
-// This is the title scene
+// This is the Splash Scene
 
-
-// Extending Scene
 class SplashScene extends Phaser.Scene {
   constructor () {
     super({ key: 'splashScene' })
+
+    this.splashSceneBackgroundImage = null
   }
 
-  // Set Background colour
   init (data) {
     this.cameras.main.setBackgroundColor('#ffffff')
   }
 
-  // Load in Splash Scene file
   preload () {
     console.log('Splash Scene')
-    this.load.image('splashSceneBackground', './assets/splashscene.jpeg')
+    this.load.image('splashSceneBackground', './assets/splashSceneImage.png')
   }
 
-  // Place Image and Center it
   create (data) {
     this.splashSceneBackgroundImage = this.add.sprite(0, 0, 'splashSceneBackground')
     this.splashSceneBackgroundImage.x = 1920 / 2
@@ -39,5 +36,4 @@ class SplashScene extends Phaser.Scene {
   }
 }
 
-export default SplashScene 
-
+export default SplashScene
