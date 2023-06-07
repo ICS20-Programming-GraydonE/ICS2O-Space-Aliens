@@ -34,6 +34,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   update (time, delta) {
+    //Switch scenes after a certain time
     if (time > 5000) {
       this.scene.switch('menuScene')
     }
