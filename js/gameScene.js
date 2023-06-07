@@ -5,13 +5,12 @@
 // Created by: Mr. Coxall
 // Created on: Sep 2020
 // Modified by: Graydon Ezzeddin
-// This is the Splash Scene
+// This is the Game Scene
 
-class TitleScene extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
   constructor () {
-    super({ key: 'titleScene' })
+    super({ key: 'gameScene' })
 
-    this.splashSceneBackgroundImage = null
   }
 
   init (data) {
@@ -19,7 +18,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   preload () {
-    console.log('Title Scene')
+    console.log('Game Scene')
   }
 
   create (data) {
@@ -30,4 +29,4 @@ class TitleScene extends Phaser.Scene {
   }
 
 
-export default TitleScene
+export default GameScene

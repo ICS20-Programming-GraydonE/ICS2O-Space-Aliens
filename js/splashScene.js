@@ -15,7 +15,7 @@ class SplashScene extends Phaser.Scene {
   }
 
   init (data) {
-    this.cameras.main.setBackgroundColor('#ffffff')
+    this.cameras.main.setBackgroundColor('#000080')
   }
 
   preload () {
@@ -24,7 +24,7 @@ class SplashScene extends Phaser.Scene {
   }
 
   create (data) {
-    this.splashSceneBackgroundImage = this.add.sprite(0, 0, 'splashSceneBackground')
+    this.splashSceneBackgroundImage = this.add.sprite(0, 0, 'splashSceneBackground').setScale(2.4)
     this.splashSceneBackgroundImage.x = 1920 / 2
     this.splashSceneBackgroundImage.y = 1080 / 2
   }
