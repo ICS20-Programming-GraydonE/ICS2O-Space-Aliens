@@ -8,6 +8,15 @@
 // This is the Game Scene
 
 class GameScene extends Phaser.Scene {
+
+  // create a polar bear
+  createPolar () {
+    const polarXLocation = Math.floor(Math.random() * 1920) + 1 // get a number between 1 and 1920
+    const aPolar = this.physics.add.sprite(polarXLocation , 100, 'polar')
+    aPolar.body.velocity.y = 200 //7.24
+    this.polarGroup.add(aPolar)
+  }
+
   constructor () {
     super({ key: 'gameScene' })
 
@@ -20,12 +29,15 @@ class GameScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor('#ffffff')
   }
 
-  preload () {
+  preload () { 
     console.log('Game Scene')
     //images
     this.load.image('articBackground', './assets/articBackground.png')
     this.load.image('ship', './assets/seal.png')
     this.load.image('missile', './assets/laser.png') 
+    this.load.image('polar', './assets/polarbear.png')
+    // sounds 
+    this.load.audio('laser', './sounds/lasersound.mp3')
   }
 
   create (data) {
@@ -37,8 +49,12 @@ class GameScene extends Phaser.Scene {
   
     // Create group for lasers
   this.missileGroup = this.physics.add.group()
+
+    // Create group for Polar bears
+  this.polarGroup = this.add.group()
+    // Function to create polar bears
+  this.createPolar()
   }
-  
 
   update (time, delta) {
     //Add controls
@@ -68,14 +84,19 @@ class GameScene extends Phaser.Scene {
         this.fireMissile = true
         const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile').setScale(0.1)
         this.missileGroup.add(aNewMissile)
+        this.sound.play('laser')
       }
     }
     
     if (keySpaceObj.isUp === true) {
       this.fireMissile = false
     }
-
-    
+  this.missileGroup.children.each(function (item){
+    item.y = item.y - 15
+      if (item.y < 50) {
+        item.destroy()
+      }
+    })
   }
 }
 
