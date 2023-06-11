@@ -40,10 +40,11 @@ class GameScene extends Phaser.Scene {
     this.load.image('articBackground', './assets/articBackground.png')
     this.load.image('ship', './assets/seal.png')
     this.load.image('missile', './assets/laser.png')
-    this.load.image('polar', './assets/polarbear.png')
+  this.load.image('polar', './assets/polarbear.png')
     // sounds
     this.load.audio('laser', './sounds/lasersound.mp3')
     this.load.audio('polardeathsound', './sounds/polarbeardeath.mp3')
+    this.load.audio('sealdeathsound', './sounds/sealdeath.mp3')
   }
 
   create(data) {
@@ -70,11 +71,23 @@ class GameScene extends Phaser.Scene {
       polarCollide.destroy()
       missileCollide.destroy()
       this.sound.play('polardeathsound')
-       this.score = this.score + 1
+      this.score = this.score + 1
       this.scoreText.setText('Score: ' + this.score.toString())
       this.createPolar()
       this.createPolar()
     }.bind(this))
+    
+    // Collisions between seal and polar bears
+    this.physics.add.collider(this.ship, this.polarGroup, function (shipCollide, polarCollide) {
+      this.sound.play('sealdeathsound');
+      this.physics.pause();
+      polarCollide.destroy();
+      shipCollide.destroy();
+      this.gameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5);
+      this.gameOverText.setInteractive({ useHandCursor: true });
+      this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'));
+    }.bind(this));
+    
   }
   
   update (time, delta) {
