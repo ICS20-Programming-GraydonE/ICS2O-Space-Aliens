@@ -25,6 +25,9 @@ class GameScene extends Phaser.Scene {
     this.background = null
     this.ship = null
     this.fireMissile = false
+    this.score = 0
+    this.scoreText = null
+    this.scoreTextStyle = { font: '65px Verdana', fill: '#ffffff', align: 'center' }
   }
 
   init(data) {
@@ -47,6 +50,10 @@ class GameScene extends Phaser.Scene {
     // add background
     this.background = this.add.image(0, 0, 'articBackground').setScale(2.0)
     this.background.setOrigin(0, 0)
+
+    // Add score 
+    this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
+    
     // add seal
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ship').setScale(0.5)
 
@@ -63,6 +70,8 @@ class GameScene extends Phaser.Scene {
       polarCollide.destroy()
       missileCollide.destroy()
       this.sound.play('polardeathsound')
+       this.score = this.score + 1
+      this.scoreText.setText('Score: ' + this.score.toString())
       this.createPolar()
       this.createPolar()
     }.bind(this))
