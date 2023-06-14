@@ -34,13 +34,13 @@ class SplashScene extends Phaser.Scene {
     this.tweens.add({
     targets: this.splashSceneBackgroundImage,
     alpha: 0,
-    duration: 2500,
+    duration: 3000,
     })
   }
 
   update (time, delta) {
     //Switch scenes after a certain time
-    if (time > 3000) {
+    if (time > 4000) {
       this.scene.switch('titleScene')
     }
   }

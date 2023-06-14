@@ -28,9 +28,11 @@ class MenuScene extends Phaser.Scene {
     // images for buttons
     this.load.image('startButton', './assets/startbutton.png')
     this.load.image('instructionButton', './assets/instructionbutton.png')
+    // music
   }
 
   create (data) {
+
     // Add background
     this.menuSceneBackgroundImage = this.add.sprite(0, 0, 'menuSceneBackground').setScale(3.5)
     this.menuSceneBackgroundImage.x = 1920 / 2

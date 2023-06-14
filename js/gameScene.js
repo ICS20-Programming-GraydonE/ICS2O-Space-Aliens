@@ -55,6 +55,7 @@ class GameScene extends Phaser.Scene {
     this.load.audio('laser', './sounds/lasersound.mp3')
     this.load.audio('polardeathsound', './sounds/polarbeardeath.mp3')
     this.load.audio('sealdeathsound', './sounds/sealdeath.mp3')
+    this.load.audio('music', './sounds/gamescenemusic.mp3')
   }
 
   create(data) {
@@ -62,6 +63,13 @@ class GameScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, 'articBackground').setScale(2.0)
     this.background.setOrigin(0, 0)
 
+
+    //Music
+    const song = this.sound.add('music');
+    song.loop = true
+    song.play()
+    song.volume = 0.5
+    
     // Add score
     this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
     // add high score
@@ -102,6 +110,8 @@ class GameScene extends Phaser.Scene {
     // Disable the space bar
       const keySpaceObj = this.input.keyboard.addKey('SPACE')
       keySpaceObj.enabled = false 
+      // Pause music and play death noise
+      song.pause('music')
       this.sound.play('sealdeathsound')
       this.physics.pause()
       polarCollide.destroy()
