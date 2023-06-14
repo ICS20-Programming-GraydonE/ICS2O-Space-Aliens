@@ -29,6 +29,13 @@ class SplashScene extends Phaser.Scene {
     this.splashSceneBackgroundImage = this.add.sprite(0, 0, 'splashSceneBackground').setScale(2.4)
     this.splashSceneBackgroundImage.x = 1920 / 2
     this.splashSceneBackgroundImage.y = 1080 / 2
+
+    // Add animation Source: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/tween/ 
+    this.tweens.add({
+    targets: this.splashSceneBackgroundImage,
+    alpha: 0,
+    duration: 2500,
+    })
   }
 
   update (time, delta) {
